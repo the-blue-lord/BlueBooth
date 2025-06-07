@@ -1,0 +1,76 @@
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+
+	body {
+		background: linear-gradient(to left, #1f2a45, #3a4d7c);
+		font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+		color: white;
+		overflow-x: hidden;
+	}
+
+	header {
+		height: 70px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 80px;
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	h1 {
+		font-size: 42px;
+		font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		letter-spacing: 1px;
+	}
+
+	nav {
+		display: flex;
+		gap: 20px;
+	}
+
+	nav button {
+		background: transparent;
+		border: none;
+		color: white;
+		font-size: 20px;
+		cursor: pointer;
+		padding: 8px 12px;
+		transition: background 0.2s;
+		font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	}
+
+	nav button:hover {
+		background: rgba(255, 255, 255, 0.1);
+		border-radius: 4px;
+	}
+	
+	div {
+		background-color: white;
+		font-size: 100px;
+		font-family: 'Rubik Mono One', sans-serif;
+		text-align: center;
+		height: 700px;
+		margin: 0 auto;
+		color: black;
+		justify-content: center;
+		align-items: center;
+		display: flex;
+	}
+
+	footer {
+		color: white;
+		font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+		max-width: 1200px;
+		margin: 40px auto;
+		padding: 20px 40px;
+		text-align: center;
+		font-size: 16px;
+	}
+
+	footer p {
+		margin: 0;
+	}
