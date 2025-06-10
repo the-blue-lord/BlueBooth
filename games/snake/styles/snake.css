@@ -1,0 +1,59 @@
+:root {
+    --color-one: green;
+    --color-two: yellowgreen;
+}
+
+body {
+    display: flex;
+    margin: 0;
+    justify-content: center;
+    background-color: black;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#board {
+    height: 100vh;
+    width: 100vh;
+    background-color: grey;
+    display: flex;
+    flex-direction: row;
+}
+
+.column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.column:nth-child(2n) {
+    background-color: #aaaaaa;
+}
+
+.column:nth-child(2n+1) {
+    background-color: #999999;
+}
+
+.cell {
+    flex: 1;
+}
+
+.cell-one {
+    background-color: var(--color-one);
+}
+
+.cell-two {
+    background-color: var(--color-two);
+}
+
+.snake-body {
+    background-color: red;
+}
+
+.snake-head {
+    background-color: chocolate;
+}
+
+.apple {
+    background-color: blue;
+}
