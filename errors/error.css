@@ -48,17 +48,25 @@
 		border-radius: 4px;
 	}
 	
-	div {
+	.error-container {
 		background-color: white;
-		font-size: 100px;
-		font-family: 'Rubik Mono One', sans-serif;
-		text-align: center;
+		color: #3a4d7c;
 		height: 700px;
-		margin: 0 auto;
-		color: black;
+		display: flex;
+		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		display: flex;
+		text-align: center;
+	}
+
+	.error-code {
+		font-size: 100px;
+		font-family: 'Rubik Mono One', sans-serif;
+	}
+
+	.error-message {
+		font-size: 50px;
+		font-family: 'Rubik Mono One', sans-serif;
 	}
 
 	footer {
