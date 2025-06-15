@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         await new Promise(resolve => setTimeout(resolve, snake.ms*snake.ms_mult));
         snake.moveSnake();
         snake.checkState();
+        if(!snake.isAlive) break;
         snake.colourSnake();
     }
 });
