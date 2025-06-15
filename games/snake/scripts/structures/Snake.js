@@ -16,7 +16,9 @@ class Snake {
         this.direction = Direction.Right;
         this.directions = [];
 
-        this.body = []
+        this.body = [];
+
+        this.eatingAudio = new Audio("audios/snake-eats.mp3");
 
         window.addEventListener("keydown", (event) => {
             if(
@@ -114,6 +116,7 @@ class Snake {
         }
         else if (this.growing) {
             this.length++;
+            this.eatingAudio.play();
             this.lengthRendered++;
             this.growing = false;
         }

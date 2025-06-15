@@ -11,4 +11,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         snake.moveSnake();
         snake.checkState();
     }
+
+    const audio_lost = new Audio("audios/snake-lost.mp3");
+    const root_style = document.documentElement.style;
+
+    audio_lost.play();
+    root_style.setProperty("--color-one", "grey");
+    root_style.setProperty("--color-two", "lightgrey");
 });
