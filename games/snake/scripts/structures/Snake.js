@@ -5,16 +5,18 @@ class Snake {
         this.ms_mult = 1;
         this.growing = false;
 
+        this.lengthRendered = 1;
+
         this.colourFunction = () => {};
         this.board = board;
         this.apples = apples;
-        this.length = 3;
+        this.length = length;
 
-        this.head = this.board.cells[length-1][0];
+        this.head = this.board.cells[0][0];
         this.direction = Direction.Right;
         this.directions = [];
 
-        this.body = Array.from({length: length-1}, (_, i) => this.board.cells[i][0]);
+        this.body = []
 
         window.addEventListener("keydown", (event) => {
             if(
@@ -84,11 +86,10 @@ class Snake {
         else if(this.direction == Direction.Left) new_x -= 1;
         else if(this.direction == Direction.Right) new_x += 1;
 
-        //while(new_x < 0) new_x += this.board.width;
-        //while(new_y < 0) new_y += this.board.height;
-
-        //new_x %= this.board.width;
-        //new_y %= this.board.height;
+        if(new_x < 0 || new_x > this.board.width-1 || new_y < 0 || new_y > this.board.height-1) {
+            this.isAlive = false;
+            return;
+        }
 
         const tmpFct = this.colourFunction;
         const head = this.head;
@@ -101,7 +102,7 @@ class Snake {
         this.body.push(this.head);
         this.head = this.board.cells[new_x][new_y];
         
-        if(!this.growing) {
+        if(!this.growing && this.lengthRendered >= this.length) {
             const tmpFct2 = this.colourFunction;
             const lastBody = this.body[0];
 
@@ -111,6 +112,14 @@ class Snake {
             }
             this.body.shift();
         }
-        else this.growing = false;
+        else if (this.growing) {
+            this.length++;
+            this.lengthRendered++;
+            this.growing = false;
+        }
+        else if (this.lengthRendered < this.length) {
+            this.lengthRendered++;
+
+        }
     }
 }
