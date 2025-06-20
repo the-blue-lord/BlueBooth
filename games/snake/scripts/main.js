@@ -5,8 +5,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     apple_generator.create();
 
+    const scoreElement = document.getElementById("score");
+
     while(snake.isAlive) {
         snake.colourSnake();
+        scoreElement.innerHTML = snake.score;
         await new Promise(resolve => setTimeout(resolve, snake.ms*snake.ms_mult));
         snake.moveSnake();
         snake.checkState();
@@ -18,4 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     audio_lost.play();
     root_style.setProperty("--color-one", "grey");
     root_style.setProperty("--color-two", "lightgrey");
+
+    const loose_div = document.createElement("div");
+    const loose_button = document.createElement("button");
 });

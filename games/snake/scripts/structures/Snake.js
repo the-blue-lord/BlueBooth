@@ -5,6 +5,9 @@ class Snake {
         this.ms_mult = 1;
         this.growing = false;
 
+        this.cnt = 1;
+        this.waiter = 10;
+
         this.lengthRendered = 1;
 
         this.colourFunction = () => {};
@@ -19,6 +22,8 @@ class Snake {
         this.body = [];
 
         this.eatingAudio = new Audio("audios/snake-eats.mp3");
+
+        this.score = 0;
 
         window.addEventListener("keydown", (event) => {
             if(
@@ -62,6 +67,7 @@ class Snake {
             this.head.element.classList.remove("apple");
             this.apples.create();
             this.ms -= 15;
+            this.score += (5 / this.ms_mult) + 5;
         }
     }
 
@@ -92,6 +98,10 @@ class Snake {
             this.isAlive = false;
             return;
         }
+
+        if(this.cnt == 0) this.score += 5;
+        this.cnt++;
+        this.cnt %= this.waiter;
 
         const tmpFct = this.colourFunction;
         const head = this.head;
