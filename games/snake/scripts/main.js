@@ -23,5 +23,25 @@ document.addEventListener("DOMContentLoaded", async () => {
     root_style.setProperty("--color-two", "lightgrey");
 
     const loose_div = document.createElement("div");
-    const loose_button = document.createElement("button");
+        loose_div.classList.add("loose-div");
+
+    const button_div = document.createElement("div");
+        button_div.classList.add("loose-button-div");
+
+    const replay_button = document.createElement("loose-button");
+        replay_button.innerHTML = "Play Again";
+        replay_button.onclick = () => window.location.reload();
+        replay_button.classList.add("loose-button");
+
+    const home_button = document.createElement("loose-button");
+        home_button.innerHTML = "Home";
+        home_button.onclick = () => window.location.href = "/homepagetest";
+        home_button.classList.add("loose-button");
+
+    loose_div.appendChild(replay_button);
+    loose_div.appendChild(home_button);
+
+
+    console.log("Game Over! Your score was: " + snake.score);
+    document.body.appendChild(loose_div);
 });
