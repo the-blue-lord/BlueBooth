@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const home_button = document.createElement("loose-button");
         home_button.innerHTML = "Home";
-        home_button.onclick = () => window.location.href = "../../homepagetest/homepage.html";
+        home_button.onclick = () => window.location.href = "/homepagetest";
         home_button.classList.add("loose-button");
 
     loose_div.appendChild(replay_button);
