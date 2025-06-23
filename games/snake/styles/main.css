@@ -1,6 +1,3 @@
-/*
-
-Non sarebe male aggiungere questo pezzettino, in modo che se lo schermo è verticale gli aside anzzichè essere left e right sono top e bottom
 
 @media (max-aspect-ratio: 1/1) {
   body {
@@ -12,8 +9,6 @@ Non sarebe male aggiungere questo pezzettino, in modo che se lo schermo è verti
     width: 100%;
   } 
 }
-  
-*/
 
 body {
     display: flex;
@@ -25,7 +20,7 @@ body {
 }
 
 aside {
-    width: 450px; /* Se si mette "width: calc(50vw - 50vh);", calcola automaticamente la corretta dimensione dell'aside, mentre se fissato ad un valore specifico, con diversi schermi potrebbe lasciare più o meno nero ai bordi*/
+    width: calc(50vw - 50vh);
     height: 100vh;
     background: linear-gradient(to left, #1f2a45, #3a4d7c);
     display: flex;

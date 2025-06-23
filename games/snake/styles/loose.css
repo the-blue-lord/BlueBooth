@@ -11,16 +11,17 @@
 }
 
 .loose-button {
-    margin: 1vh 0; /* To separate "play again" and "home" buttons vertically */
-    padding: 0.2vh 0.4vh;
-    background-color: #1123c7;
-    color: #ff0000;
-    font-size: 2vh;
-    border: 0.4vh solid #000000;
-    border-radius: 1vh;
+    margin: 4vh 0;
+    padding: 2vh 4vh;
+    background-color: #1f2a45;
+    color: red;
+    font-size: 3vh;
+    border: 0.2vh solid black;
+    border-radius: 2vh;
 }
 
 .loose-button:hover {
-    background-color: #0c29e7;
+    background-color: #3a4d7c;
     cursor: pointer;
+	transform: scale(1.05);
 }
