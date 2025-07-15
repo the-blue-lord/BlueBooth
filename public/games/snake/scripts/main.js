@@ -1,3 +1,7 @@
+import { initBoard } from "./utilis";
+import Snake from "./structures/Snake";
+import Apple from "./structures/Apple";
+
 document.addEventListener("DOMContentLoaded", async () => {
     const board = initBoard(20);
     const apple_generator = new Apple(board);

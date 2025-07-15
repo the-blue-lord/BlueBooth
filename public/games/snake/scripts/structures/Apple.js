@@ -1,4 +1,4 @@
-class Apple {
+export default class Apple {
     constructor(board) {
         this.board = board;
 

@@ -1,4 +1,6 @@
-class Board {
+import Column from "./Column";
+
+export default class Board {
     constructor(board, width, height) {
         this.element = board;
         this.width = width;

@@ -1,4 +1,4 @@
-class Cell {
+export default class Cell {
     constructor(x, y, parity) {
         this.x = x;
         this.y = y;

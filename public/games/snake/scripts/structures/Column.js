@@ -1,4 +1,6 @@
-class Column {
+import Cell from "./Cell";
+
+export default class Column {
     constructor(x, height) {
         this.x = x;
         this.height = height;

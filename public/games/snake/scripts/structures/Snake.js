@@ -1,4 +1,6 @@
-class Snake {
+import { Direction } from "../utilis";
+
+export default class Snake {
     constructor(board, apples, length) {
         this.isAlive = true;
         this.ms = 700;
