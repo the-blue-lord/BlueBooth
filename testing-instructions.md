@@ -31,7 +31,7 @@ Nel momento però in cui si renda necessario accedere ad un file di cui è neces
 > Nel caso in cui si accedesse ad un file del codice sorgente che implementa moduli javascript, ce ne si accorgerà immediatamente dal momento che non si vedranno caricati alcuni elementi e la pagina apparirà _broken_
 
 > [!TIP] 
-> Accedere alternativamente ai file della cartella `[repo]/build` dopo la compilazione risulterà in problemi simili a quelli riportati sopra, in quanto non verranno caricati nemmeno i file css, per poter caricare correttamente i file è necessario che non vengano aperti sul browser tramite `file:///`, ma che siano serviti da un browser in grado di organizzare le richieste ricevute che può anche essere semplicemente hostato sulla propria rete locale.
+> Accedere alternativamente ai file della cartella `[repo]/build` dopo la compilazione risulterà in problemi simili a quelli riportati sopra, in quanto non verranno caricati nemmeno i file css. Per poter caricare correttamente i file è necessario che non vengano aperti sul browser tramite `file:///`, ma che siano serviti da un server in grado di organizzare le richieste ricevute che può anche essere semplicemente hostato sulla propria rete locale.
 
 
 
