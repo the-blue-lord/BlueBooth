@@ -1,8 +1,16 @@
 import { initBoard } from "./utilis";
 import Snake from "./structures/Snake";
 import Apple from "./structures/Apple";
+import io from "socket.io-client";
+
+const params = new URLSearchParams(window.location.search);
 
 document.addEventListener("DOMContentLoaded", async () => {
+    const socket = io("http://localhost:6445/games/snake");
+    const lobby = params.get("id");
+    socket.emit("join-lobby", lobby);
+    socket.on("player-lost", id => alert((id || "someone") + "lost"));
+
     const board = initBoard(20);
     const apple_generator = new Apple(board);
     const snake = new Snake(board, apple_generator, 4);
@@ -18,6 +26,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         snake.moveSnake();
         snake.checkState();
     }
+    socket.emit("game-lost", lobby);
 
     const audio_lost = new Audio("audios/snake-lost.mp3");
     const root_style = document.documentElement.style;
