@@ -1,13 +1,18 @@
+import { Direction } from "../utils";
+
 export default class Cell {
-    constructor(x, y, parity) {
+    constructor(x, y, offset = 0, offset_direction = Direction.Null) {
         this.x = x;
         this.y = y;
+        this.off = offset;
+        this.off_dir = offset_direction;
+    }
 
-        this.element = document.createElement("div");
-        this.element.classList.add("cell");
-        this.element.id = x+","+y;
+    getCanvasX(square_side) {
+        return square_side*(this.x + 0.5);
+    }
 
-        this.parity = parity%2 == 0? "one" : "two";
-        this.element.classList.add("cell-"+this.parity);
+    getCanvasY(square_side) {
+        return square_side*(this.y + 0.5);
     }
 }

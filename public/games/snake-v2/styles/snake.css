@@ -1,9 +1,3 @@
-:root {
-    --color-one: green;
-    --color-two: yellowgreen;
-
-}
-
 @media (max-aspect-ratio: 1/1) {
   #board {
     height: 100vw;
@@ -13,45 +7,5 @@
 #board {
     aspect-ratio: 1/1;
     height: 100vh;
-    background-color: grey;
-    display: flex;
-    flex-direction: row;
-}
-
-.column {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.column:nth-child(2n) {
-    background-color: #aaaaaa;
-}
-
-.column:nth-child(2n+1) {
-    background-color: #999999;
-}
-
-.cell {
-    flex: 1;
-}
-
-.cell-one {
-    background-color: var(--color-one);
-}
-
-.cell-two {
-    background-color: var(--color-two);
-}
-
-.snake-body {
-    background-color: red;
-}
-
-.snake-head {
-    background-color: chocolate;
-}
-
-.apple {
-    background-color: blue;
+    background-color: white;
 }

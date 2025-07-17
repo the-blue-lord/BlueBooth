@@ -7,8 +7,11 @@ export function initBoard(x) {
 }
 
 export const Direction = {
-    Up: "Up",
-    Down: "Down",
-    Left: "Left",
-    Right: "Right"
+    Null: 0,
+    Up: -1,
+    Down: 1,
+    Left: 2,
+    Right: -2,
+    Horizontal: 2,
+    Vertical: 1
 };
