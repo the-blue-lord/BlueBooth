@@ -29,9 +29,6 @@ export default class Game {
                 case "ArrowRight":
                     this.addMovementAction(Direction.Right);
                     break;
-                case "KeyP":
-                    this.addMovementAction(Direction.Null);
-                    break;
             }
         });
     }
@@ -40,7 +37,7 @@ export default class Game {
         this.ctx.fillStyle = "darkred";
         this.ctx.fillRect(0, 0, this.viewport_side, this.viewport_side);
     
-        this.trnaslatedCanvas( () => {
+        this.translatedCanvas( () => {
             this.ctx.fillStyle = this.getBoardPattern();
             this.ctx.fillRect(0, 0, 2*this.viewport_side, 2*this.viewport_side);
         });
@@ -50,7 +47,7 @@ export default class Game {
     drawSnakes() {
         this.ctx.fillStyle = "black";
 
-        this.trnaslatedCanvas( () => {
+        this.translatedCanvas( () => {
             this.ctx.beginPath();
             this.ctx.arc(this.snake.head.getCanvasX(this.square_side), this.snake.head.getCanvasY(this.square_side), 3*this.square_side/8, 0, Math.PI * 2);
             this.ctx.fill();
@@ -59,21 +56,26 @@ export default class Game {
 
     updateState() {
         const snake_head = this.snake.head;
-        let direction = this.inputs.shift() || Direction.Null;
 
-        switch(direction) {
-            case Direction.Up:
-                snake_head.y--;
-                break;
-            case Direction.Down:
-                snake_head.y++;
-                break;
-            case Direction.Left:
-                snake_head.x--;
-                break;
-            case Direction.Right:
-                snake_head.x++;
-                break;
+        snake_head.off += this.snake.speed;
+
+        if(snake_head.off >= this.square_side) {
+            snake_head.off = 0;
+            switch(snake_head.off_dir) {
+                case Direction.Up:
+                    snake_head.y--;
+                    break;
+                case Direction.Down:
+                    snake_head.y++;
+                    break;
+                case Direction.Left:
+                    snake_head.x--;
+                    break;
+                case Direction.Right:
+                    snake_head.x++;
+                    break;
+            }
+            snake_head.off_dir = this.inputs.shift() || snake_head.off_dir;
         }
     }
 
@@ -97,7 +99,7 @@ export default class Game {
         return pattern;
     }
 
-    trnaslatedCanvas(function_to_run) {
+    translatedCanvas(function_to_run) {
         this.ctx.save();
 
         this.ctx.translate((this.viewport_side/2)-this.snake.head.getCanvasX(this.square_side), (this.viewport_side/2)-this.snake.head.getCanvasY(this.square_side));
@@ -110,6 +112,7 @@ export default class Game {
     addMovementAction(direction) {
         const input_length = this.inputs.length;
         const last_input = this.inputs[input_length-1];
-        if(!input_length || (last_input != direction && last_input != -direction)) this.inputs.push(direction);
+        const snake_direction = this.snake.head.off_dir;
+        if((last_input || snake_direction) != direction && (last_input || snake_direction) != -direction) this.inputs.push(direction);
     }
 }

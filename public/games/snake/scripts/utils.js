@@ -8,8 +8,8 @@ export const Direction = {
     Null: 0,
     Up: -1,
     Down: 1,
-    Left: 2,
-    Right: -2,
+    Left: -2,
+    Right: 2,
     Horizontal: 2,
     Vertical: 1
 };

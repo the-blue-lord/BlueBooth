@@ -3,7 +3,7 @@ import { resolve } from 'path';
 import fs from 'fs';
 import path from 'path';
 
-const pagesDir = path.resolve(__dirname, 'public');
+const pagesDir = path.resolve(__dirname, 'public/games/snake-v2');
 
 function findHtmlFiles(dir, input = {}) {
   const files = fs.readdirSync(dir);
@@ -21,9 +21,9 @@ function findHtmlFiles(dir, input = {}) {
 }
 
 export default defineConfig({
-  root: 'public',
+  root: 'public/games/snake-v2',
   build: {
-    outDir: '../build',
+    outDir: '../../../build-snake-2.0.0',
     rollupOptions: {
       input: findHtmlFiles(pagesDir)
     }
