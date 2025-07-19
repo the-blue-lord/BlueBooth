@@ -1,7 +1,7 @@
 import { Direction } from "../utils";
 
 export default class Cell {
-    constructor(x, y, offset = 0, offset_direction = Direction.Null) {
+    constructor(x, y, offset_direction = Direction.Null, offset = 0) {
         this.x = x;
         this.y = y;
         this.off = offset;

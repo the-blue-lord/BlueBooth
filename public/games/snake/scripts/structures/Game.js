@@ -1,4 +1,5 @@
 import Snake from "./Snake"
+import Cell from "./Cell";
 import { Direction } from "../utils";
 
 export default class Game {
@@ -11,7 +12,9 @@ export default class Game {
 
         this.data = {};
         this.inputs = [];
-        this.snake = new Snake();
+        this.snake = new Snake(3);
+
+        console.log(this);
     }
 
     initListeners(document) {
@@ -39,43 +42,55 @@ export default class Game {
     
         this.translatedCanvas( () => {
             this.ctx.fillStyle = this.getBoardPattern();
-            this.ctx.fillRect(0, 0, 2*this.viewport_side, 2*this.viewport_side);
+            this.ctx.fillRect(0, 0, this.board_side, this.board_side);
         });
             
     }
 
     drawSnakes() {
-        this.ctx.fillStyle = "black";
-
         this.translatedCanvas( () => {
+            this.ctx.fillStyle = "black";
             this.ctx.beginPath();
             this.ctx.arc(this.snake.head.getCanvasX(this.square_side), this.snake.head.getCanvasY(this.square_side), 3*this.square_side/8, 0, Math.PI * 2);
             this.ctx.fill();
+
+            this.ctx.fillStyle = "white";
+            this.snake.body.forEach(cell => {
+                this.ctx.beginPath();
+                this.ctx.arc(cell.getCanvasX(this.square_side), cell.getCanvasY(this.square_side), 3*this.square_side/8, 0, Math.PI * 2);
+                this.ctx.fill();
+            });
         });
     }
 
     updateState() {
-        const snake_head = this.snake.head;
+        const snake = this.snake;
 
-        snake_head.off += this.snake.speed;
+        snake.head.off += this.snake.speed;
+        snake.body.forEach(cell => cell.off += this.snake.speed);
 
-        if(snake_head.off >= this.square_side) {
-            snake_head.off = 0;
-            switch(snake_head.off_dir) {
+        if(snake.head.off >= this.square_side) {
+            snake.head.off = 0;
+            snake.body.forEach(cell => cell.off = 0);
+            snake.body.push(new Cell(snake.head.x, snake.head.y, snake.head.off_dir));
+            snake.body.shift();
+
+            switch(snake.head.off_dir) {
                 case Direction.Up:
-                    snake_head.y--;
+                    snake.head.y--;
                     break;
                 case Direction.Down:
-                    snake_head.y++;
+                    snake.head.y++;
                     break;
                 case Direction.Left:
-                    snake_head.x--;
+                    snake.head.x--;
                     break;
                 case Direction.Right:
-                    snake_head.x++;
+                    snake.head.x++;
                     break;
             }
-            snake_head.off_dir = this.inputs.shift() || snake_head.off_dir;
+
+            snake.head.off_dir = this.inputs.shift() || snake.head.off_dir;
         }
     }
 
