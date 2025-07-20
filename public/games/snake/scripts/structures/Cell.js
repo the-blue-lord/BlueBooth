@@ -8,15 +8,15 @@ export default class Cell {
         this.off_dir = offset_direction;
     }
 
-    getCanvasX(square_side) {
+    getCanvasX(square_side, apply_offset = true) {
         let  offset = 0;
         if(Math.abs(this.off_dir) == Direction.Horizontal) offset = this.off * (this.off_dir / Math.abs(this.off_dir));
-        return square_side*(this.x + 0.5) + offset;
+        return square_side*(this.x + 0.5) + (apply_offset ? offset : 0);
     }
 
-    getCanvasY(square_side) {
+    getCanvasY(square_side, apply_offset = true) {
         let offset = 0;
         if(Math.abs(this.off_dir) == Direction.Vertical) offset = this.off * (this.off_dir / Math.abs(this.off_dir));
-        return square_side*(this.y + 0.5) + offset;
+        return square_side*(this.y + 0.5) + (apply_offset ? offset : 0);
     }
 }

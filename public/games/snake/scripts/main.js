@@ -15,6 +15,8 @@ animate();
 function animate() {
     local_game.drawBoard();
     local_game.drawSnakes();
-    local_game.updateState();
+
+    local_game.updateGame();
+
     requestAnimationFrame(animate);
 }

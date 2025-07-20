@@ -24,6 +24,20 @@ export default class Snake {
         }
         this.body = [];
 
-        for(let i = length; i > 0; i--) this.body.push(new Cell(this.head.x + delta_x * i, this.head.y + delta_y * i, direction));
+        for(let i = 1; i < length+1; i++) this.body.push(new Cell(this.head.x + delta_x * i, this.head.y + delta_y * i, direction));
+    }
+
+    getVertices(){
+        const vertices = [this.head];
+
+        let last_cell = this.head;
+
+        this.body.forEach(cell => {
+            const last_vertex = vertices[vertices.length - 1];
+            if((last_vertex.x-last_cell.x)*(last_cell.y-cell.y) != (last_vertex.y-last_cell.y)*(last_cell.x-cell.x)) vertices.push(last_cell);
+            last_cell = cell;
+        });
+
+        return vertices;
     }
 };
