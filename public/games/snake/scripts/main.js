@@ -7,7 +7,7 @@ const canvas = document.getElementById("board");
 canvas.height = canvas.clientHeight;
 canvas.width = canvas.clientHeight;
 
-const local_game = new Game(canvas, 32, 18);
+const local_game = new Game(canvas, 32, 20);
 local_game.initListeners(document);
 
 animate();

@@ -1,6 +1,6 @@
 import Snake from "./Snake"
 import Cell from "./Cell";
-import { Direction } from "../utils";
+import { Direction, boundInRange } from "../utils";
 
 export default class Game {
     constructor(canvas, squares_per_side, squares_per_viewport) {
@@ -12,7 +12,7 @@ export default class Game {
 
         this.data = {};
         this.inputs = [];
-        this.snake = new Snake(3);
+        this.snake = new Snake(7);
 
         console.log(this);
     }
@@ -61,6 +61,8 @@ export default class Game {
     updateGame() {
         const snake = this.snake;
 
+        if(!snake.isAlive) return;
+
         snake.head.off += this.snake.speed;
         snake.body.forEach(cell => cell.off += this.snake.speed);
 
@@ -87,6 +89,31 @@ export default class Game {
 
             snake.head.off_dir = this.inputs.shift() || snake.head.off_dir;
         }
+
+        const body_segments = []
+
+        body_segments.push(...[...this.snake.getVertices(), snake.body[snake.body.length - 1]].map((v, i, a) => [
+            {
+                x: v.getCanvasX(this.square_side, i == 0),
+                y: v.getCanvasY(this.square_side, i == 0)
+            },
+            {
+                x: a[i+1]?.getCanvasX(this.square_side, i == a.length - 2),
+                y: a[i+1]?.getCanvasY(this.square_side, i == a.length - 2)
+            }
+        ]).slice(0, -1));
+
+        body_segments.forEach(segment => {
+            const head_x = snake.head.getCanvasX(this.square_side);
+            const head_y = snake.head.getCanvasY(this.square_side);
+
+            const segment_x =  boundInRange(head_x, segment[0].x, segment[1].x);
+            const segment_y =  boundInRange(head_y, segment[0].y, segment[1].y);
+
+            if(Math.round(head_x) == Math.round(segment_x) && Math.round(head_y) == Math.round(segment_y)) return;
+
+            if((head_x-segment_x)**2 + (head_y-segment_y)**2 < this.getSnakeThikness()**2) snake.isAlive = false;
+        });
     }
 
     getBoardPattern() {
@@ -137,7 +164,7 @@ export default class Game {
     }
 
     drawSnakeBody(context, snake_head, snake_vertices, snake_tail, square_side, snake_body_color = "red") {
-        const thickness = 3*square_side/4;
+        const thickness = this.getSnakeThikness();
 
         context.strokeStyle = snake_body_color;
         context.fillStyle = snake_body_color;
@@ -173,5 +200,9 @@ export default class Game {
         context.beginPath();
         context.arc(tail_x, tail_y, thickness/2, 0, Math.PI * 2);
         context.fill();
+    }
+
+    getSnakeThikness() {
+        return 3*this.square_side/4;
     }
 }

@@ -5,7 +5,7 @@ import { Direction } from "../utils";
 export default class Snake {
     constructor(length = 3, direction = Direction.Right) {
         this.speed = 2;
-        this.head = new Cell(5, 6, direction);
+        this.head = new Cell(8, 5, direction);
         let delta_x = 0;
         let delta_y = 0;
         switch (direction) {
@@ -23,6 +23,8 @@ export default class Snake {
                 break;
         }
         this.body = [];
+
+        this.isAlive = true;
 
         for(let i = 1; i < length+1; i++) this.body.push(new Cell(this.head.x + delta_x * i, this.head.y + delta_y * i, direction));
     }
