@@ -19,17 +19,22 @@ export default class Game {
 
     initListeners(document) {
         document.addEventListener("keydown", (event) => {
-            switch(event.key) {
+            // use arrows and wasd and use event.code instead of event.key
+            switch(event.code) {
                 case "ArrowUp":
+                case "KeyW":
                     this.addMovementAction(Direction.Up);
                     break;
                 case "ArrowDown":
+                case "KeyS":
                     this.addMovementAction(Direction.Down);
                     break;
                 case "ArrowLeft":
+                case "KeyA":
                     this.addMovementAction(Direction.Left);
                     break;
                 case "ArrowRight":
+                case "KeyD":
                     this.addMovementAction(Direction.Right);
                     break;
             }
