@@ -1,4 +1,4 @@
-import Snake from "./Snake"
+import Snake from "./Snake";
 import Cell from "./Cell";
 import { Direction, boundInRange } from "../utils";
 
@@ -102,6 +102,33 @@ export default class Game {
                 y: a[i+1]?.getCanvasY(this.square_side, i == a.length - 2)
             }
         ]).slice(0, -1));
+
+        const corners = [
+            {
+                x: -this.getSnakeThikness()/2,
+                y: -this.getSnakeThikness()/2
+            },
+            {
+                x: this.board_side + this.getSnakeThikness()/2,
+                y: -this.getSnakeThikness()/2
+            },
+            {
+                x: this.board_side + this.getSnakeThikness()/2,
+                y: this.board_side + this.getSnakeThikness()/2
+            },
+            {
+                x: -this.getSnakeThikness()/2,
+                y: this.board_side + this.getSnakeThikness()/2
+            }
+        ];
+
+        console.log(corners);
+
+        console.log(corners.map((c, i, a) => [c, a[(i+1)%4]]));
+
+        body_segments.push(...(corners.map((c, i, a) => [c, a[(i+1)%4]])));
+
+        console.log(body_segments);
 
         body_segments.forEach(segment => {
             const head_x = snake.head.getCanvasX(this.square_side);
