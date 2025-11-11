@@ -7,14 +7,20 @@ export default class Game {
         this.ctx = canvas.getContext("2d");
 
         this.viewport_side = canvas.height;
-        this.square_side = this.viewport_side / squares_per_viewport;
+        this.square_side = Math.floor(this.viewport_side / squares_per_viewport);
         this.board_side = this.square_side * squares_per_side;
+
+        console.log({
+            table_length: this.board_side,
+            square_length: this.square_side,
+            squares: squares_per_side
+        });
 
         this.data = {};
         this.inputs = [];
         this.snake = new Snake(7);
 
-        console.log(this);
+        //console.log(this);
     }
 
     initListeners(document) {
@@ -45,15 +51,16 @@ export default class Game {
         this.ctx.fillStyle = "darkred";
         this.ctx.fillRect(0, 0, this.viewport_side, this.viewport_side);
     
-        this.translatedCanvas( () => {
+        this.translatedCanvas(() => {
             this.ctx.fillStyle = this.getBoardPattern();
             this.ctx.fillRect(0, 0, this.board_side, this.board_side);
+            console.log(this.board_side);
         });
             
     }
 
     drawSnakes() {
-        this.translatedCanvas( () => {
+        this.translatedCanvas(() => {
             const snake_head = this.snake.head;
             const snake_vertices = this.snake.getVertices();
             const snake_tail = this.snake.body[this.snake.body.length-1];
@@ -127,13 +134,13 @@ export default class Game {
             }
         ];
 
-        console.log(corners);
+        //console.log(corners);
 
-        console.log(corners.map((c, i, a) => [c, a[(i+1)%4]]));
+        //console.log(corners.map((c, i, a) => [c, a[(i+1)%4]]));
 
         body_segments.push(...(corners.map((c, i, a) => [c, a[(i+1)%4]])));
 
-        console.log(body_segments);
+        //console.log(body_segments);
 
         body_segments.forEach(segment => {
             const head_x = snake.head.getCanvasX(this.square_side);
@@ -152,6 +159,7 @@ export default class Game {
         const pattern_canvas = document.createElement("canvas");
 
         pattern_canvas.width = 2*this.square_side;
+        console.log(pattern_canvas.width);
         pattern_canvas.height = 2*this.square_side;
         const pattern_ctx = pattern_canvas.getContext("2d");
 
