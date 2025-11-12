@@ -1,0 +1,254 @@
+	h1 {
+		font-family: 'Quicksand', sans-serif;
+		font-size: 5rem;
+		text-align: center;
+		color: white;
+		margin-top: 5%;
+		position: relative;
+		padding: 10px;
+		text-shadow: 
+		-4px 4px 10px rgba(0, 0, 0, 0.8),
+		2px -2px 6px rgba(0, 0, 0, 0.3);
+	}
+
+	body {
+		user-select: none;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100vh;
+		margin: 0;
+		background-color: #1f2a45;
+		flex-direction: column;
+		position: relative;
+		font-family: 'Quicksand', sans-serif;
+	}
+
+	.version {
+		position: absolute;
+		top: 10px;
+		left: 10px;
+		color: white;
+		font-family: 'Quicksand', sans-serif;
+		font-size: 1.5rem;
+		z-index: 10;
+	}
+
+	.button-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 40px;
+	}
+
+	button {
+		background-color: #3a4d7c;
+		border: none;
+		color: white;
+		padding: 15px 30px;
+		font-size: 2.0rem;
+		margin: 20px 0;
+		border-radius: 25px;
+		width: 350px;
+		font-family: 'Quicksand', sans-serif;
+		text-align: center;
+		cursor: pointer;
+		transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+		text-shadow: 
+		-4px 4px 10px rgba(0, 0, 0, 0.8),
+		2px -2px 6px rgba(0, 0, 0, 0.3);
+	}
+
+	button a {
+		text-decoration: none;
+		color: white;
+		display: block;
+	}
+
+	button:hover {
+		background-color: #466399;
+		transform: scale(1.05);
+		box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+	}
+
+	button:active {
+		transform: scale(0.98);
+	}
+
+	.profile-btn {
+		position: absolute;
+		bottom: 10px;
+		left: 10px;
+	}
+
+	.profile-btn button {
+		background-color: #3a4d7c;
+		border-radius: 25px;
+		padding: 10px 20px;
+		font-size: 1.5rem;
+		width: 150px;
+	}
+
+	.language-btn {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+	}
+
+	.language-btn button {
+		background-color: #3a4d7c;
+		border-radius: 25px;
+		padding: 10px 20px;
+		font-size: 1.5rem;
+		width: 150px;
+		position: relative;
+		font-family: 'Quicksand', sans-serif;
+	}
+
+	.language-dropdown {
+		display: none;
+		position: absolute;
+		top: 75px;
+		right: 0;
+		background: linear-gradient(to bottom, #3a4d7c, #466399);
+		border-radius: 10px;
+		width: 200px;
+		z-index: 10;
+		box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+		font-family: 'Quicksand', sans-serif;
+	}
+
+	.language-btn:hover .language-dropdown {
+		display: block;
+	}
+
+	#language-search {
+		width: 100%;
+		padding: 10px;
+		margin-bottom: 10px;
+		border-radius: 5px;
+		border: none;
+		font-size: 1.2rem;
+		color: #333;
+		background-color: #fff;
+		font-family: 'Quicksand', sans-serif;
+	}
+
+	#language-select {
+		width: 100%;
+		padding: 10px;
+		margin: 0;
+		border-radius: 5px;
+		border: none;
+		font-size: 1.2rem;
+		color: #333;
+		background-color: #fff;
+		font-family: 'Quicksand', sans-serif;
+	}
+	
+	.box-container {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 20px;
+	margin-top: 40px;
+	justify-items: center;
+	}
+
+	.box {
+	background-color: #3a4d7c;
+	color: white;
+	padding: 30px;
+	font-size: 2rem;
+	text-align: center;
+	border-radius: 10px;
+	width: 200px;
+	height: 200px;
+	font-family: 'Quicksand', sans-serif;
+	cursor: pointer;
+	transition: transform 0.3s ease, background-color 0.3s ease;
+	}
+
+	.box:hover {
+	transform: scale(1.05);
+	background-color: #466399;
+	}
+
+	.button-container button a {
+	color: white;
+	text-decoration: none;
+	}
+
+	.button-container button {
+	background-color: #3a4d7c;
+	border-radius: 25px;
+	padding: 15px 30px;
+	font-size: 2.0rem;
+	margin: 20px 0;
+	width: 350px;
+	font-family: 'Quicksand', sans-serif;
+	text-align: center;
+	cursor: pointer;
+	transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+	}
+
+	.button-container button:hover {
+	background-color: #466399;
+	transform: scale(1.05);
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+	}
+
+	.option-container {
+	margin-top: 40px;
+	font-size: 1.5rem;
+	color: white;
+	}
+
+	input[type="range"], select {
+	width: 100%;
+	padding: 10px;
+	margin: 10px 0;
+	font-size: 1.2rem;
+	border-radius: 5px;
+	border: none;
+	background-color: #fff;
+	color: #333;
+	font-family: 'Quicksand', sans-serif;
+	}
+
+	.home-btn {
+	background-color: #466399;
+	color: white;
+	padding: 10px 20px;
+	font-size: 1.5rem;
+	border-radius: 25px;
+	text-align: center;
+	cursor: pointer;
+	transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+	font-family: 'Quicksand', sans-serif;
+	display: inline-block;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: 2px solid #466399;
+	}
+
+	.home-btn:hover {
+	background-color: #3a4d7c;
+	transform: scale(1.05);
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+	}
+
+	.home-btn:active {
+	transform: scale(0.98);
+	}
+
+	.home-btn a {
+	color: white;
+	text-decoration: none;
+	display: block;
+	}
+
+	.home-btn-container {
+	display: flex;
+	justify-content: center;
+	margin-top: 40px;
+	}
