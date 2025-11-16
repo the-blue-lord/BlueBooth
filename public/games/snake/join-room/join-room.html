@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<title>Snake - Join</title>
+		
+		<link href="../styles/main.css" rel="stylesheet">
+		<link href="../styles/snake.css" rel="stylesheet">
+		<link href="../styles/loose.css" rel="stylesheet">
+		<script src="./join-room.js" type="module"></script>
+	</head>
+	
+	<body>
+		<aside>
+			<div class="score-box">
+				<p>Punteggio: <span id="score">0</span></p>
+			</div>
+		</aside>
+
+		<div id="board">
+			<form id="join-form" action="/games/snake/lobby" method="GET">
+				<label for="username">Username:</label>
+				<input type="text" id="username" name="username" required>
+				<label for="room-id">ID Stanza:</label>
+				<input type="text" id="room-id" name="room" required>
+				<button id="join-room" type="submit">Entra</button>
+			</form>
+		</div>
+
+		<aside>
+			<div class="score-box">
+				<p>High Score: 999</p>
+			</div>
+			<a href="/" class="home-button">Torna alla home page</a>
+		</aside>
+	</body>
+</html>

@@ -10,22 +10,13 @@ export default class Game {
         this.square_side = Math.floor(this.viewport_side / squares_per_viewport);
         this.board_side = this.square_side * squares_per_side;
 
-        console.log({
-            table_length: this.board_side,
-            square_length: this.square_side,
-            squares: squares_per_side
-        });
-
         this.data = {};
         this.inputs = [];
-        this.snake = new Snake(7);
-
-        //console.log(this);
+        this.snake = new Snake(1);
     }
 
     initListeners(document) {
         document.addEventListener("keydown", (event) => {
-            // use arrows and wasd and use event.code instead of event.key
             switch(event.code) {
                 case "ArrowUp":
                 case "KeyW":
@@ -54,7 +45,6 @@ export default class Game {
         this.translatedCanvas(() => {
             this.ctx.fillStyle = this.getBoardPattern();
             this.ctx.fillRect(0, 0, this.board_side, this.board_side);
-            console.log(this.board_side);
         });
             
     }
@@ -65,8 +55,8 @@ export default class Game {
             const snake_vertices = this.snake.getVertices();
             const snake_tail = this.snake.body[this.snake.body.length-1];
 
-            this.drawSnakeBody(this.ctx, snake_head, snake_vertices, snake_tail, this.square_side, "red");
-            this.drawSnakeHead(this.ctx, snake_head, this.square_side, "black");
+            this.snake.drawSnakeBody(this.ctx, snake_head, snake_vertices, snake_tail, this.square_side, "red");
+            this.snake.drawSnakeHead(this.ctx, snake_head, this.square_side, "black");
         });
     }
 
@@ -117,30 +107,24 @@ export default class Game {
 
         const corners = [
             {
-                x: -this.getSnakeThikness()/2,
-                y: -this.getSnakeThikness()/2
+                x: -this.snake.getSnakeThikness(this.square_side)/2,
+                y: -this.snake.getSnakeThikness(this.square_side)/2
             },
             {
-                x: this.board_side + this.getSnakeThikness()/2,
-                y: -this.getSnakeThikness()/2
+                x: this.board_side + this.snake.getSnakeThikness(this.square_side)/2,
+                y: -this.snake.getSnakeThikness(this.square_side)/2
             },
             {
-                x: this.board_side + this.getSnakeThikness()/2,
-                y: this.board_side + this.getSnakeThikness()/2
+                x: this.board_side + this.snake.getSnakeThikness(this.square_side)/2,
+                y: this.board_side + this.snake.getSnakeThikness(this.square_side)/2
             },
             {
-                x: -this.getSnakeThikness()/2,
-                y: this.board_side + this.getSnakeThikness()/2
+                x: -this.snake.getSnakeThikness(this.square_side)/2,
+                y: this.board_side + this.snake.getSnakeThikness(this.square_side)/2
             }
         ];
 
-        //console.log(corners);
-
-        //console.log(corners.map((c, i, a) => [c, a[(i+1)%4]]));
-
         body_segments.push(...(corners.map((c, i, a) => [c, a[(i+1)%4]])));
-
-        //console.log(body_segments);
 
         body_segments.forEach(segment => {
             const head_x = snake.head.getCanvasX(this.square_side);
@@ -151,7 +135,7 @@ export default class Game {
 
             if(Math.round(head_x) == Math.round(segment_x) && Math.round(head_y) == Math.round(segment_y)) return;
 
-            if((head_x-segment_x)**2 + (head_y-segment_y)**2 < this.getSnakeThikness()**2) snake.isAlive = false;
+            if((head_x-segment_x)**2 + (head_y-segment_y)**2 < this.snake.getSnakeThikness(this.square_side)**2) snake.isAlive = false;
         });
     }
 
@@ -159,7 +143,6 @@ export default class Game {
         const pattern_canvas = document.createElement("canvas");
 
         pattern_canvas.width = 2*this.square_side;
-        console.log(pattern_canvas.width);
         pattern_canvas.height = 2*this.square_side;
         const pattern_ctx = pattern_canvas.getContext("2d");
 
@@ -191,58 +174,5 @@ export default class Game {
         const last_input = this.inputs[input_length-1];
         const snake_direction = this.snake.head.off_dir;
         if((last_input || snake_direction) != direction && (last_input || snake_direction) != -direction) this.inputs.push(direction);
-    }
-
-    drawSnakeHead(context, snake_head, square_side, snake_head_color = "red") {
-        const head_x = snake_head.getCanvasX(square_side);
-        const head_y = snake_head.getCanvasY(square_side);
-
-        context.fillStyle = snake_head_color;
-        context.beginPath();
-        context.arc(head_x, head_y, 3*this.square_side/8, 0, Math.PI * 2);
-        context.fill();
-    }
-
-    drawSnakeBody(context, snake_head, snake_vertices, snake_tail, square_side, snake_body_color = "red") {
-        const thickness = this.getSnakeThikness();
-
-        context.strokeStyle = snake_body_color;
-        context.fillStyle = snake_body_color;
-        context.lineWidth = thickness;
-
-        const head_x = snake_head.getCanvasX(square_side);
-        const head_y = snake_head.getCanvasY(square_side);
-
-        context.beginPath();
-        context.moveTo(head_x, head_y);
-
-        snake_vertices.forEach((vertex) => {
-            const vertex_x = vertex.getCanvasX(square_side, false);
-            const vertex_y = vertex.getCanvasY(square_side, false);
-
-            context.lineTo(vertex_x, vertex_y);
-            context.stroke();
-
-            context.beginPath();
-            context.arc(vertex_x, vertex_y, thickness/2, 0, Math.PI * 2);
-            context.fill();
-
-            context.beginPath();
-            context.moveTo(vertex_x, vertex_y);
-        });
-
-        const tail_x = snake_tail.getCanvasX(square_side);
-        const tail_y = snake_tail.getCanvasY(square_side);
-
-        context.lineTo(tail_x, tail_y);
-        context.stroke();
-
-        context.beginPath();
-        context.arc(tail_x, tail_y, thickness/2, 0, Math.PI * 2);
-        context.fill();
-    }
-
-    getSnakeThikness() {
-        return 3*this.square_side/4;
     }
 }

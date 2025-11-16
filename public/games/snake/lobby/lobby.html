@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<title>Snake - New</title>
+		
+		<link href="../styles/main.css" rel="stylesheet">
+		<link href="../styles/snake.css" rel="stylesheet">
+		<link href="../styles/loose.css" rel="stylesheet">
+		<script src="./lobby.js" type="module"></script>
+	</head>
+	
+	<body>
+		<aside>
+			<div class="score-box">
+				<p>Punteggio: <span id="score">0</span></p>
+			</div>
+		</aside>
+
+		<div id="board"> <!-- DO NOT CHANGE DIV ID -->
+			<div id="player-list">
+
+				<!--
+				PLAYER DIV EXAMPLE:
+
+				<div class="player-div">
+					[...username...] <button class="remove-button">[...icon...]</button>
+				</div>
+				-->
+
+			</div>
+
+			<!-- BUTTON ONLY AVAILALE FOR HOST: -->
+			<button id="start-lobby" onclick="window.location.href='/games/snake/lobby'" disabled="true">Start game</button>
+		</div>
+
+		<aside>
+			<div class="score-box">
+				<p>High Score: 999</p>
+			</div>
+			<a href="/" class="home-button">Torna alla home page</a>
+		</aside>
+	</body>
+</html>

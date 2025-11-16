@@ -22,3 +22,13 @@ export const Direction = {
     Horizontal: 2,
     Vertical: 1
 };
+
+// socket.io exports
+
+export function drawGui(game_data, player_id, canvas_context) {
+    canvas_context.fillRect(0, 0, game_data.board_size*game_data.cell_size);
+    canvas_context.save();
+    //canvas_context.translate(game_data.viewport_size/2 - game_data.snakes[player_id].head.o);
+
+    canvas_context.restore();
+}
